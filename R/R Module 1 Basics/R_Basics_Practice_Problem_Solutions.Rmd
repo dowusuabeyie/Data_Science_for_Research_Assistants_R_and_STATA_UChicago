@@ -1,0 +1,147 @@
+---
+title: "R Basics Practice Problem Solutions"
+author: "|# Dominic Owusu Abeyie #|"
+#institute: "{\\color{blue} }"
+#date: ""  
+output:
+  beamer_presentation:
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+  ioslides_presentation: default
+header-includes:
+  - \usepackage{graphicx}  
+  - \usepackage{xcolor}    
+  - \AtBeginDocument{
+      \titlegraphic{\includegraphics[width=2cm]{University_of_Chicago_shield.png} \\ 
+      {\small \textcolor{blue}{Data Science for Research Assistants - UChicago}}}
+    }
+  - \AtBeginDocument{\date{03-12-2024}} 
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## ISLR Chapter 2 Q8
+
+- (a) Set **wd** and load college data  
+```{r, echo=TRUE, eval=FALSE}
+setwd("~/Dropbox/Github/R/R Module 1 Basics)  
+college <- read.csv(file="College.csv", header = TRUE)
+```
+
+```{r}
+setwd("C:/Users/dowus/Dropbox/Github Files/Data Science for Research Assistants - University of Chicago/Data_Science_for_Research_Assistants_R_and_STATA_UChicago/R/R Module 1 Basics")
+college <- read.csv(file="College.csv", header = TRUE, sep = ",")
+
+```
+
+## ISLR Chapter 2 Q8
+
+- (b,c) Give data frame college rownames and delete first column afterward.
+
+```{r, echo=TRUE}
+rownames(college) <- college[,1]
+college <- college[,-1]
+#View(college)
+
+```
+
+## ISLR Chapter 2 Q8
+- Summary of variables: There are 19 variables. This produces summary of 2 variables in order to fit the page. #The rest can produced by subsetting the data.
+
+```{r, echo = TRUE}
+summary(college[,1:2])
+
+```
+
+## ISLR Chapter 2 Q8
+- Summary of variables: _continue_...
+```{r, echo=TRUE}
+summary(college[,3:5])
+```
+
+## ISLR Chapter 2 Q8
+
+
+```{r, echo=TRUE}
+#Visualize scatter plot of first 10 var.
+pairs(college[, 2:11]) 
+```
+
+## ISLR Chapter 2 Q8
+
+### Boxplot Code  
+
+```{r, echo=TRUE, eval=FALSE}
+
+college$Private <- as.factor(college$Private)
+
+plot(college$Private, college$Outstate, 
+     main = "Outstate Tuition vs Private/Public Colleges",
+     xlab = "Private College", 
+     ylab = "Out-of-State Tuition",
+     col = "lightblue")
+```
+## ISLR Chapter 2 Q8
+
+- Visualize boxplot
+```{r, echo=FALSE}
+college$Private <- as.factor(college$Private)
+plot(college$Private, college$Outstate, 
+     main = "Outstate Tuition vs Private/Public Colleges",
+     xlab = "Private College", 
+     ylab = "Out-of-State Tuition",
+     col = "lightblue")
+
+```
+
+## ISLR Chapter 2 Q8
+
+- Create a new qualitative variable (“Yes” or “No”), called Elite
+
+```{r, echo=FALSE}
+Elite <- rep("No", nrow(college))
+Elite[college$Top10perc > 50] <- "Yes"
+Elite <- as.factor(Elite)
+college <- data.frame(college, Elite)
+```
+
+```{r, echo=TRUE, eval=FALSE}
+Elite <- rep("No", nrow(college))
+Elite[college$Top10perc > 50] <- "Yes"
+Elite <- as.factor(Elite)
+college <- data.frame(college, Elite)
+```
+
+```{r, echo=TRUE}
+# Check how many elite colleges exist
+summary(Elite)
+```
+
+## ISLR Chapter 2 Q8
+
+- Code of boxplots for Outstate vs Elite
+
+```{r, echo=TRUE, eval=FALSE}
+plot(college$Elite, college$Outstate, 
+     main = "Outstate Tuition for Elite vs 
+     Non-Elite Colleges",
+     xlab = "Elite Status",
+     ylab = "Out-of-State Tuition",
+     col = "lightblue")
+```
+
+## ISLR Chapter 2 Q8
+
+- Boxplots for Outstate vs Elite
+
+```{r, echo=FALSE}
+plot(college$Elite, college$Outstate, 
+     main = "Outstate Tuition for Elite vs Non-Elite Colleges",
+     xlab = "Elite Status",
+     ylab = "Out-of-State Tuition",
+     col = "lightblue")
+```

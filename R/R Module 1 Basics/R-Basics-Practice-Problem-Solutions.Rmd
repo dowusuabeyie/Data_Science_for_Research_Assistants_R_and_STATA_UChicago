@@ -3,7 +3,10 @@ title: "R Basics Module Practice Problem Solutions"
 author: "Dominic Owusu Abeyie"
 date: "2024-03-12"
 output:
-  beamer_presentation: default
+  beamer_presentation: 
+  theme: "AnnArbor"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
   ioslides_presentation: default
 ---
 
