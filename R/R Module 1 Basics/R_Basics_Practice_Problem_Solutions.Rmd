@@ -1,7 +1,7 @@
 ---
 title: "R Basics Practice Problem Solutions"
 author: "|# Dominic Owusu Abeyie #|"
-#institute: "{\\color{blue} }"
+#institute: "KNUST"
 #date: ""  
 output:
   beamer_presentation:
